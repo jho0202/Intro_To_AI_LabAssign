@@ -1,0 +1,30 @@
+import random
+
+def fitness(x):
+    return x*x
+
+def genetic_algorithm():
+    population = [random.randint(0,10) for _ in range(6)]
+
+    for generation in range(5):
+        population = sorted(population, key=fitness, reverse=True)
+
+        print("Generation", generation, ":", population)
+
+        parent1 = population[0]
+        parent2 = population[1]
+
+        child = (parent1 + parent2)//2
+
+        if random.random() < 0.3:
+            child += random.randint(-1,1)
+
+        population[-1] = child
+
+    return population[0]
+
+# Example 1
+print("Best solution example 1:", genetic_algorithm())
+
+# Example 2
+print("Best solution example 2:", genetic_algorithm())
